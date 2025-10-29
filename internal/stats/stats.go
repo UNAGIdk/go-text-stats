@@ -2,7 +2,9 @@ package stats
 
 import (
 	"bufio"
+	"fmt"
 	"io"
+	"os"
 	"strings"
 	"unicode/utf8"
 )
@@ -20,7 +22,8 @@ func CountTextStats(r io.Reader) (rows, words, symbols int, err error) {
 
 	err = scanner.Err()
 	if err != nil {
-		return rows, words, symbols, err
+		fmt.Fprintln(os.Stderr)
+		os.Exit(1)
 	}
 
 	return rows, words, symbols, nil
